@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,101 +10,207 @@ public class Calculator implements ActionListener {
    JButton fourButton, fiveButton, sixButton;
    JButton oneButton, twoButton, threeButton;
    JButton dotButton, zeroButton;
-   JButton divButton, mulButton, minusButton, plusButton, equaltoButton;
-  JButton displayButton;
+   JButton divButton, mulButton, minusButton, plusButton, equaltoButton,clearButton;
+   JLabel displayLabel;
+   JLabel outerDisplayLabel;
    String oldValue;
-   int  b = 0;
+   int  click = 0;
+   Border colorBorder = BorderFactory.createLineBorder(Color.white,1);
 
    public Calculator() {
       JFrame frame = new JFrame("Calculator");
       frame.setLayout(null);
-      frame.setSize(400, 500);
+      frame.getContentPane().setBackground(Color.black);
+
+      frame.setSize(335, 550);
       frame.setLocation(450, 150);
+      displayLabel = new JLabel("");
+      displayLabel.setBounds(30, 40, 255, 40);
+      displayLabel.setBackground(Color.darkGray);
+      displayLabel.setOpaque(true);
+      displayLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+      displayLabel.setForeground(Color.white);
+      displayLabel.setFont(new Font("Arial",Font.BOLD,30));
+      frame.add(displayLabel);
 
-      displayButton = new JButton("");
-      displayButton.setBounds(3, 10, 380, 80);
-      displayButton.setBackground(Color.lightGray);
-      displayButton.setOpaque(true);
-
-      displayButton.setHorizontalAlignment(SwingConstants.RIGHT);
-      displayButton.setForeground(Color.white);
-      displayButton.setFont(new Font("Arial",Font.BOLD,40));
-      frame.add(displayButton);
-      displayButton.addActionListener(this);
-
+      outerDisplayLabel = new JLabel("");
+      outerDisplayLabel.setBounds(25, 35, 265, 50);
+      outerDisplayLabel.setBackground(Color.white);
+      outerDisplayLabel.setOpaque(true);
+      frame.add(outerDisplayLabel);
 
       sevenButton = new JButton("7");
+      sevenButton.setBackground(Color.darkGray);
+      sevenButton.setOpaque(true);
+      sevenButton.setForeground(Color.LIGHT_GRAY);
+      sevenButton.setFont(new Font("",Font.BOLD,25));
+      sevenButton.setBorder(colorBorder);
       sevenButton.setBounds(30, 120, 50, 50);
       frame.add(sevenButton);
       sevenButton.addActionListener(this);
+
       eightButton = new JButton("8");
-      eightButton.setBounds(110, 120, 50, 50);
+      eightButton.setBackground(Color.darkGray);
+      eightButton.setOpaque(true);
+      eightButton.setForeground(Color.LIGHT_GRAY);
+      eightButton.setFont(new Font("",Font.BOLD,25));
+      eightButton.setBorder(colorBorder);
+      eightButton.setBounds(100, 120, 50, 50);
       frame.add(eightButton);
       eightButton.addActionListener(this);
+
       nineButton = new JButton("9");
-      nineButton.setBounds(200, 120, 50, 50);
+      nineButton.setBackground(Color.darkGray);
+      nineButton.setOpaque(true);
+      nineButton.setForeground(Color.LIGHT_GRAY);
+      nineButton.setFont(new Font("",Font.BOLD,25));
+      nineButton.setBorder(colorBorder);
+      nineButton.setBounds(170, 120, 50, 50);
       frame.add(nineButton);
       nineButton.addActionListener(this);
+
       fourButton = new JButton("4");
+      fourButton.setBackground(Color.darkGray);
+      fourButton.setOpaque(true);
+      fourButton.setForeground(Color.LIGHT_GRAY);
+      fourButton.setFont(new Font("",Font.BOLD,25));
+      fourButton.setBorder(colorBorder);
       fourButton.setBounds(30, 200, 50, 50);
       frame.add(fourButton);
       fourButton.addActionListener(this);
+
       fiveButton = new JButton("5");
-      fiveButton.setBounds(110, 200, 50, 50);
+      fiveButton.setBackground(Color.darkGray);
+      fiveButton.setOpaque(true);
+      fiveButton.setForeground(Color.LIGHT_GRAY);
+      fiveButton.setFont(new Font("",Font.BOLD,25));
+      fiveButton.setBorder(colorBorder);
+      fiveButton.setBounds(100, 200, 50, 50);
       frame.add(fiveButton);
       fiveButton.addActionListener(this);
+
       sixButton = new JButton("6");
-      sixButton.setBounds(200, 200, 50, 50);
+      sixButton.setBackground(Color.darkGray);
+      sixButton.setOpaque(true);
+      sixButton.setForeground(Color.LIGHT_GRAY);
+      sixButton.setFont(new Font("",Font.BOLD,25));
+      sixButton.setBorder(colorBorder);
+      sixButton.setBounds(170, 200, 50, 50);
       frame.add(sixButton);
       sixButton.addActionListener(this);
 
-
       oneButton = new JButton("1");
+      oneButton.setBackground(Color.darkGray);
+      oneButton.setOpaque(true);
+      oneButton.setForeground(Color.LIGHT_GRAY);
+      oneButton.setFont(new Font("",Font.BOLD,25));
+      oneButton.setBorder(colorBorder);
       oneButton.setBounds(30, 280, 50, 50);
       frame.add(oneButton);
       oneButton.addActionListener(this);
+
       twoButton = new JButton("2");
-      twoButton.setBounds(110, 280, 50, 50);
+      twoButton.setBackground(Color.darkGray);
+      twoButton.setOpaque(true);
+      twoButton.setForeground(Color.LIGHT_GRAY);
+      twoButton.setFont(new Font("",Font.BOLD,25));
+      twoButton.setBorder(colorBorder);
+      twoButton.setBounds(100, 280, 50, 50);
       frame.add(twoButton);
       twoButton.addActionListener(this);
+
       threeButton = new JButton("3");
-      threeButton.setBounds(200, 280, 50, 50);
+      threeButton.setBackground(Color.darkGray);
+      threeButton.setOpaque(true);
+      threeButton.setForeground(Color.LIGHT_GRAY);
+      threeButton.setFont(new Font("",Font.BOLD,25));
+      threeButton.setBorder(colorBorder);
+      threeButton.setBounds(170, 280, 50, 50);
       frame.add(threeButton);
       threeButton.addActionListener(this);
 
 
       dotButton = new JButton(".");
+      dotButton.setBackground(Color.darkGray);
+      dotButton.setOpaque(true);
+      dotButton.setForeground(Color.LIGHT_GRAY);
+      dotButton.setFont(new Font("",Font.BOLD,25));
+      dotButton.setBorder(colorBorder);
       dotButton.setBounds(30, 360, 50, 50);
       frame.add(dotButton);
       dotButton.addActionListener(this);
-      equaltoButton = new JButton("=");
-      equaltoButton.setBounds(110, 360, 50, 50);
-      frame.add(equaltoButton);
-      equaltoButton.addActionListener(this);
+
       zeroButton = new JButton("0");
-      zeroButton.setBounds(200, 360, 50, 50);
+      zeroButton.setBackground(Color.darkGray);
+      zeroButton.setOpaque(true);
+      zeroButton.setForeground(Color.LIGHT_GRAY);
+      zeroButton.setFont(new Font("",Font.BOLD,25));
+      zeroButton.setBorder(colorBorder);
+      zeroButton.setBounds(100, 360, 50, 50);
       frame.add(zeroButton);
       zeroButton.addActionListener(this);
 
+      clearButton = new JButton("c");
+      clearButton.setBackground(Color.darkGray);
+      clearButton.setOpaque(true);
+      clearButton.setForeground(Color.white);
+      clearButton.setFont(new Font("",Font.BOLD,25));
+      clearButton.setBorder(colorBorder);
+      clearButton.setBounds(170, 360, 50, 50);
+      frame.add(clearButton);
+      clearButton.addActionListener(this);
+
 
       divButton = new JButton("/");
-      divButton.setBounds(280, 120, 50, 50);
+      divButton.setBackground(Color.darkGray);
+      divButton.setOpaque(true);
+      divButton.setForeground(Color.white);
+      divButton.setFont(new Font("",Font.BOLD,25));
+      divButton.setBorder(colorBorder);
+      divButton.setBounds(240, 120, 50, 50);
       frame.add(divButton);
       divButton.addActionListener(this);
 
-      mulButton = new JButton("X");
-      mulButton.setBounds(280, 200, 50, 50);
+      mulButton = new JButton("x");
+      mulButton.setBackground(Color.darkGray);
+      mulButton.setOpaque(true);
+      mulButton.setForeground(Color.white);
+      mulButton.setFont(new Font("",Font.BOLD,25));
+      mulButton.setBorder(colorBorder);
+      mulButton.setBounds(240, 200, 50, 50);
       frame.add(mulButton);
       mulButton.addActionListener(this);
 
       minusButton = new JButton("-");
-      minusButton.setBounds(280, 280, 50, 50);
+      minusButton.setBackground(Color.darkGray);
+      minusButton.setOpaque(true);
+      minusButton.setForeground(Color.white);
+      minusButton.setFont(new Font("",Font.BOLD,25));
+      minusButton.setBorder(colorBorder);
+      minusButton.setBounds(240, 280, 50, 50);
       frame.add(minusButton);
       minusButton.addActionListener(this);
+
       plusButton = new JButton("+");
-      plusButton.setBounds(280, 360, 50, 50);
+      plusButton.setBackground(Color.darkGray);
+      plusButton.setOpaque(true);
+      plusButton.setForeground(Color.white);
+      plusButton.setFont(new Font("",Font.BOLD,25));
+      plusButton.setBorder(colorBorder);
+      plusButton.setBounds(240, 360, 50, 50);
       frame.add(plusButton);
       plusButton.addActionListener(this);
+
+      equaltoButton = new JButton("=");
+      equaltoButton.setBounds(30, 440, 260, 40);
+      equaltoButton.setBackground(Color.red);
+      equaltoButton.setOpaque(true);
+      equaltoButton.setForeground(Color.white);
+      equaltoButton.setFont(new Font("",Font.BOLD,25));
+      equaltoButton.setBorder(colorBorder);
+      frame.add(equaltoButton);
+      equaltoButton.addActionListener(this);
+
 
 
       frame.setVisible(true);
@@ -114,87 +221,93 @@ public class Calculator implements ActionListener {
    public static void main(String[] a) {
       new Calculator();
 
+
    }
 
    @Override
    public void actionPerformed(ActionEvent e) {
 
+
+
       if (e.getSource() == sevenButton) {
 
 
-         displayButton.setText(displayButton.getText() + "7");
+         displayLabel.setText(displayLabel.getText() + "7");
 
       } else if (e.getSource() == eightButton) {
-         displayButton.setText(displayButton.getText() + "8");
+         displayLabel.setText(displayLabel.getText() + "8");
       } else if (e.getSource() == nineButton) {
-         displayButton.setText(displayButton.getText() + "9");
+         displayLabel.setText(displayLabel.getText() + "9");
       } else if (e.getSource() == fourButton) {
-         displayButton.setText(displayButton.getText() + "4");
+         displayLabel.setText(displayLabel.getText() + "4");
       } else if (e.getSource() == fiveButton) {
-         displayButton.setText(displayButton.getText() + "5");
+         displayLabel.setText(displayLabel.getText() + "5");
       } else if (e.getSource() == sixButton) {
-         displayButton.setText(displayButton.getText() + "6");
+         displayLabel.setText(displayLabel.getText() + "6");
       } else if (e.getSource() == oneButton) {
-         displayButton.setText(displayButton.getText() + "1");
+         displayLabel.setText(displayLabel.getText() + "1");
       } else if (e.getSource() == twoButton) {
-         displayButton.setText(displayButton.getText() + "2");
+         displayLabel.setText(displayLabel.getText() + "2");
       } else if (e.getSource() == threeButton) {
-         displayButton.setText(displayButton.getText() + "3");
+         displayLabel.setText(displayLabel.getText() + "3");
       } else if (e.getSource() == dotButton) {
-         displayButton.setText(displayButton.getText() + ".");
+         displayLabel.setText(displayLabel.getText() + ".");
       } else if (e.getSource() == zeroButton) {
-         displayButton.setText(displayButton.getText() + "0");
-      } else if(e.getSource()==displayButton){
-         displayButton.setText("");
+         displayLabel.setText(displayLabel.getText() + "0");
+      } else if(e.getSource()==clearButton){
+         displayLabel.setText("");
 
       } else if (e.getSource() == divButton) {
-         oldValue = displayButton.getText();
-         b=4;
-         displayButton.setText("");
+         oldValue = displayLabel.getText();
+         click=4;
+         displayLabel.setText("");
       } else if (e.getSource() == mulButton) {
-         oldValue = displayButton.getText();
-         b=3;
-         displayButton.setText("");
+         oldValue = displayLabel.getText();
+         click=3;
+         displayLabel.setText("");
       } else if (e.getSource() == minusButton) {
-         oldValue = displayButton.getText();
-         b = 2;
-         displayButton.setText("");
+         oldValue = displayLabel.getText();
+         click = 2;
+         displayLabel.setText("");
       } else if (e.getSource() == plusButton) {
-         oldValue = displayButton.getText();
-         b = 1;
-         displayButton.setText("");
+         oldValue = displayLabel.getText();
+         click = 1;
+         displayLabel.setText("");
       }else if (e.getSource() == equaltoButton) {
 
-         if (b == 1) {
-            String newValue = displayButton.getText();
+         if (click == 1) {
+            String newValue = displayLabel.getText();
             float newValueF = Float.parseFloat(newValue);
             float oldValueF = Float.parseFloat(oldValue);
             float result = oldValueF + newValueF;
-            displayButton.setText(result + "");
-         } else if (b == 2) {
+            displayLabel.setText(result + "");
+         } else if (click == 2) {
 
-            String newValue = displayButton.getText();
+            String newValue = displayLabel.getText();
             float newValueF = Float.parseFloat(newValue);
             float oldValueF = Float.parseFloat(oldValue);
             float result = oldValueF - newValueF;
-            displayButton.setText(result + "");
-         }else if(b==3){
-            String newValue = displayButton.getText();
+            displayLabel.setText(result + "");
+         }else if(click==3){
+            String newValue = displayLabel.getText();
             float newValueF = Float.parseFloat(newValue);
             float oldValueF = Float.parseFloat(oldValue);
             float result = oldValueF * newValueF;
-            displayButton.setText(result + "");
+            displayLabel.setText(result + "");
 
-         }else if(b==4){
-            String newValue = displayButton.getText();
+         }else if(click==4){
+            String newValue = displayLabel.getText();
             float newValueF = Float.parseFloat(newValue);
             float oldValueF = Float.parseFloat(oldValue);
             float result = oldValueF / newValueF;
-            displayButton.setText(result + "");
-         }else
+            displayLabel.setText(result + "");
+
+
+         }
+         else
          {
-            displayButton.setText("null");
-            System.out.println("hello");
+            displayLabel.setText("null");
+
 
          }
 

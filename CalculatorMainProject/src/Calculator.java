@@ -17,7 +17,7 @@ public class Calculator implements ActionListener {
    boolean isOperatorClicked = false;
    float lastNumber = 0,firstNumber = 0, result = 0;
 
-  String click = "";//click is used to find the operator
+   String click = "";//click is used to find the operator
    Border colorBorder = BorderFactory.createLineBorder(Color.white, 1);
    ArrayList<String> number=new ArrayList<>();
 
@@ -447,22 +447,15 @@ public class Calculator implements ActionListener {
 
       }else if(e.getSource()==sqrtButton){
          descriptionLabel.setText(("√ "+displayLabel.getText()));
-         Double numsqrt=Double.parseDouble(displayLabel.getText());
-         Double resultSqrt=Math.sqrt(numsqrt);
+        float numsqrt=Float.parseFloat(displayLabel.getText());
+        double resultSqrt=Math.sqrt(numsqrt);
          displayLabel.setText(resultSqrt+"");
       }else if(e.getSource()==eraserButton){
          displayLabel.setText(displayLabel.getText().substring(0, displayLabel.getText().length() - 1));
 
       }
-
-
-
    }
-
-
-
-
-  void operators() {
+   void operators() {
 
 
      number.add(displayLabel.getText());
@@ -471,7 +464,6 @@ public class Calculator implements ActionListener {
 
          lastNumber = Float.parseFloat(number.get(1));
          number.clear();
-
          switch (click) {
             case "+" -> result = firstNumber + lastNumber;
             case "-" -> result = firstNumber - lastNumber;
